@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Professional Multi-Page Quiz</title>
+<style>
+
+body {
+font-family: Arial;
+margin:0;
+background:#f2f2f2;
+}
+
+.container {
+display:flex;
+height:100vh;
+}
+
+.question-area {
+flex:3;
+padding:20px;
+overflow-y:auto;
+background:white;
+margin-right:260px;
+}
+
+.option {
+margin:8px 0;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+cursor:pointer;
+}
+
+.option.correct { background:#c8f7c5; }
+.option.wrong { background:#f7c5c5; }
+
+button {
+margin:5px;
+padding:8px 15px;
+cursor:pointer;
+}
+
+.restart-btn {
+background:#ff9800;
+color:white;
+border:none;
+}
+
+.nav-area {
+flex:1;
+background:#222;
+color:white;
+padding:15px;
+position:fixed;
+right:0;
+top:0;
+height:100%;
+overflow-y:auto;
+width:260px;
+}
+
+.summary {
+margin-bottom:15px;
+}
+
+.nav-grid {
+display:flex;
+flex-wrap:wrap;
+gap:5px;
+}
+
+.nav-btn {
+width:35px;
+height:35px;
+border:none;
+cursor:pointer;
+background:#555;
+color:white;
+}
+
+.nav-btn.current { background:#1e90ff; }
+.nav-btn.answered { background:#28a745; }
+.nav-btn.notanswered { background:#dc3545; }
+
+select {
+padding:6px;
+margin:5px 0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="question-area">
+
+<h2>DAILY VOCAB MCQ Quiz</h2>
+
+<label><b>Select Page:</b></label><br>
+<select id="pageSelect"></select>
+
+<label><b>Select Mode:</b></label><br>
+<select id="modeSelect">
+<option value="false">Non Shuffle</option>
+<option value="true">Shuffle</option>
+</select>
+
+<div id="progress"></div>
+<div id="question"></div>
+<div id="options"></div>
+
+<button onclick="prevQuestion()">Previous</button>
+<button onclick="nextQuestion()">Next</button>
+<button onclick="showResult()">Submit</button>
+<button class="restart-btn" onclick="restartPage()">Restart Page</button>
+
+<div id="explanation"></div>
+<div id="result"></div>
+
+</div>
+
+<div class="nav-area">
+
+<h3>Question Palette</h3>
+
+<div class="summary">
+Answered: <span id="answeredCount">0</span><br>
+Not Answered: <span id="notAnsweredCount">0</span><br>
+Not Visited: <span id="notVisitedCount">0</span>
+</div>
+
+<div class="nav-grid" id="navPanel"></div>
+
+</div>
+
+</div>
+
+<script>
+
+// =============================
+// ADD PAGES HERE (Only once per page)
+// =============================
+
+const allPages = {
+
+"DAY- 1": [
+{
+question: "What is the meaning of Thuggery? | Thuggery என்றால் என்ன?",
+options: ["Violent criminal behavior | வன்முறை குற்ற நடத்தை","Peaceful activity | அமைதியான செயல்","Kind action | அன்பான செயல்","Legal system | சட்ட அமைப்பு"],
+correctAnswer: "Violent criminal behavior | வன்முறை குற்ற நடத்தை",
+explanation: "Thuggery means violent criminal behavior involving brutality and lawlessness. | Thuggery என்பது வன்முறை மற்றும் சட்டமின்மை கொண்ட குற்ற செயல்களை குறிக்கும்."
+},
+
+{
+question: "What is the meaning of Violence? | Violence என்றால் என்ன?",
+options: ["Use of physical force to harm | உடல் வலிமையால் சேதப்படுத்துதல்","Helping others | பிறருக்கு உதவுதல்","Soft behavior | மென்மையான நடத்தை","Polite talk | மரியாதையான பேச்சு"],
+correctAnswer: "Use of physical force to harm | உடல் வலிமையால் சேதப்படுத்துதல்",
+explanation: "Violence means physical force intended to hurt or damage. | Violence என்பது காயப்படுத்த உடல் வலிமையை பயன்படுத்துதல்."
+},
+
+{
+question: "What is the meaning of Hooliganism? | Hooliganism என்றால் என்ன?",
+options: ["Rowdy and disorderly behavior | அருவருப்பான குழப்ப நடத்தை","Disciplined action | ஒழுக்கமான செயல்","Kind service | அன்பான சேவை","Serious study | தீவிரமான படிப்பு"],
+correctAnswer: "Rowdy and disorderly behavior | அருவருப்பான குழப்ப நடத்தை",
+explanation: "Hooliganism means rowdy, violent or unruly behavior. | Hooliganism என்பது ஒழுங்கற்ற மற்றும் வன்முறை நடத்தை."
+},
+
+{
+question: "What is the meaning of Gangsterism? | Gangsterism என்றால் என்ன?",
+options: ["Criminal activities by gangs | கும்பல் குற்ற செயல்கள்","Social service | சமூக சேவை","Business trade | வணிகம்","Cultural program | கலாச்சார நிகழ்ச்சி"],
+correctAnswer: "Criminal activities by gangs | கும்பல் குற்ற செயல்கள்",
+explanation: "Gangsterism means organized criminal activity by gangs. | Gangsterism என்பது கும்பல்களால் செய்யப்படும் குற்ற செயல்கள்."
+},
+
+{
+question: "What is the meaning of Brutality? | Brutality என்றால் என்ன?",
+options: ["Extreme cruelty | கடுமையான கொடூரம்","Kindness | இரக்கம்","Softness | மென்மை","Wisdom | ஞானம்"],
+correctAnswer: "Extreme cruelty | கடுமையான கொடூரம்",
+explanation: "Brutality means extreme cruelty or violence. | Brutality என்பது மிகுந்த கொடூரத்தை குறிக்கும்."
+},
+
+{
+question: "What is the meaning of Lawlessness? | Lawlessness என்றால் என்ன?",
+options: ["Absence of law and order | சட்டமும் ஒழுங்கும் இல்லாத நிலை","Strict rules | கடுமையான விதிகள்","Court system | நீதிமன்ற அமைப்பு","Police control | காவல் கட்டுப்பாடு"],
+correctAnswer: "Absence of law and order | சட்டமும் ஒழுங்கும் இல்லாத நிலை",
+explanation: "Lawlessness means lack of laws or control. | Lawlessness என்பது சட்ட கட்டுப்பாடு இல்லாத நிலை."
+}
+],
+
+"Page 2": [
+{
+question: "Sattriya classical dance belongs to which state?",
+options: ["Assam","Kerala","Tamil Nadu","Odisha"],
+correctAnswer: "Assam",
+explanation: "Sattriya belongs to Assam."
+}
+],
+
+"Page 3": [
+{
+question: "Mohiniyattam belongs to which state?",
+options: ["Kerala","Odisha","Assam","Tamil Nadu"],
+correctAnswer: "Kerala",
+explanation: "Mohiniyattam belongs to Kerala."
+}
+],
+
+"Page 4": [
+{
+question: "Bharatanatyam originated in?",
+options: ["Tamil Nadu","Kerala","UP","Manipur"],
+correctAnswer: "Tamil Nadu",
+explanation: "Bharatanatyam originated in Tamil Nadu."
+}
+],
+
+"Page 5": [
+{
+question: "Kathak belongs to which state?",
+options: ["Uttar Pradesh","Kerala","Assam","Odisha"],
+correctAnswer: "Uttar Pradesh",
+explanation: "Kathak belongs to Uttar Pradesh."
+}
+],
+
+"Page 6": [
+{
+question: "Kathak belongs to which state?",
+options: ["Uttar Pradesh","Kerala","Assam","Odisha"],
+correctAnswer: "Uttar Pradesh",
+explanation: "Kathak belongs to Uttar Pradesh."
+},
+{
+question: "raja belongs to which state?",
+options: ["Uttar Pradesh","Kerala","Assam","Odisha"],
+correctAnswer: "Uttar Pradesh",
+explanation: "Kathak belongs to Uttar Pradesh."
+}
+]
+
+};
+
+// =============================
+
+let quizData = [];
+let current = 0;
+let answers = [];
+let visited = [];
+let currentPage = "";
+let shuffleMode = false;
+
+// =============================
+
+function shuffleArray(array){
+for(let i = array.length - 1; i > 0; i--){
+let j = Math.floor(Math.random() * (i + 1));
+[array[i], array[j]] = [array[j], array[i]];
+}
+return array;
+}
+
+// =============================
+
+function loadPage(pageName){
+
+currentPage = pageName;
+
+quizData = JSON.parse(JSON.stringify(allPages[pageName]));
+
+if(shuffleMode){
+shuffleArray(quizData);
+quizData.forEach(q => shuffleArray(q.options));
+}
+
+current = 0;
+answers = new Array(quizData.length).fill(null);
+visited = new Array(quizData.length).fill(false);
+
+document.getElementById("result").innerHTML = "";
+
+loadQuestion();
+}
+
+// =============================
+
+function restartPage(){
+loadPage(currentPage);
+}
+
+// =============================
+
+function loadQuestion(){
+
+visited[current] = true;
+
+let q = quizData[current];
+
+document.getElementById("progress").innerText =
+"Question " + (current+1) + " of " + quizData.length;
+
+document.getElementById("question").innerText = q.question;
+
+let html = "";
+
+for(let i=0;i<q.options.length;i++){
+
+let className = "option";
+
+if(answers[current] !== null){
+if(q.options[i] === q.correctAnswer)
+className += " correct";
+else if(i === answers[current])
+className += " wrong";
+}
+
+html += '<div class="'+className+'" onclick="selectAnswer('+i+')">'+q.options[i]+'</div>';
+}
+
+document.getElementById("options").innerHTML = html;
+
+if(answers[current] !== null){
+document.getElementById("explanation").innerHTML =
+"<b>Explanation:</b> " + q.explanation;
+}else{
+document.getElementById("explanation").innerHTML = "";
+}
+
+loadNavigation();
+updateSummary();
+}
+
+// =============================
+
+function selectAnswer(index){
+answers[current] = index;
+loadQuestion();
+}
+
+function nextQuestion(){
+if(current < quizData.length-1){
+current++;
+loadQuestion();
+}
+}
+
+function prevQuestion(){
+if(current > 0){
+current--;
+loadQuestion();
+}
+}
+
+function goToQuestion(i){
+current = i;
+loadQuestion();
+}
+
+// =============================
+
+function loadNavigation(){
+
+let navHTML = "";
+
+for(let i=0;i<quizData.length;i++){
+
+let className = "nav-btn";
+
+if(i === current) className += " current";
+else if(answers[i] !== null) className += " answered";
+else if(visited[i]) className += " notanswered";
+
+navHTML += '<button class="'+className+'" onclick="goToQuestion('+i+')">'+(i+1)+'</button>';
+}
+
+document.getElementById("navPanel").innerHTML = navHTML;
+}
+
+// =============================
+
+function updateSummary(){
+
+let answered = answers.filter(a=>a!==null).length;
+let notVisited = visited.filter(v=>v===false).length;
+let notAnswered = quizData.length - answered - notVisited;
+
+document.getElementById("answeredCount").innerText = answered;
+document.getElementById("notAnsweredCount").innerText = notAnswered;
+document.getElementById("notVisitedCount").innerText = notVisited;
+}
+
+// =============================
+
+function showResult(){
+
+let score = 0;
+
+for(let i=0;i<quizData.length;i++){
+if(quizData[i].options[answers[i]] === quizData[i].correctAnswer){
+score++;
+}
+}
+
+document.getElementById("result").innerHTML =
+"<h3>Your Score: "+score+" / "+quizData.length+"</h3>";
+}
+
+// =============================
+
+window.onload = function(){
+
+let pageSelect = document.getElementById("pageSelect");
+
+for(let page in allPages){
+let option = document.createElement("option");
+option.value = page;
+option.text = page;
+pageSelect.appendChild(option);
+}
+
+pageSelect.onchange = function(){
+loadPage(this.value);
+};
+
+document.getElementById("modeSelect").onchange = function(){
+shuffleMode = (this.value === "true");
+loadPage(pageSelect.value);
+};
+
+loadPage(Object.keys(allPages)[0]);
+};
+
+</script>
+
+</body>
+</html>
