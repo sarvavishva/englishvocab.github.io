@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>Professional Multi-Page Quiz</title>
-<style>
 
+<style>
 body {
 font-family: Arial;
 margin:0;
@@ -59,9 +59,7 @@ overflow-y:auto;
 width:260px;
 }
 
-.summary {
-margin-bottom:15px;
-}
+.summary { margin-bottom:15px; }
 
 .nav-grid {
 display:flex;
@@ -86,9 +84,9 @@ select {
 padding:6px;
 margin:5px 0;
 }
-
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -139,12 +137,12 @@ Not Visited: <span id="notVisitedCount">0</span>
 <script>
 
 // =============================
-// ADD PAGES HERE (Only once per page)
+// ADD YOUR QUESTIONS HERE
 // =============================
 
 const allPages = {
 
-"DAY- 1": [
+"DAY-1": [
 {
 question: "What is the meaning of Thuggery? | Thuggery என்றால் என்ன?",
 options: ["Violent criminal behavior | வன்முறை குற்ற நடத்தை","Peaceful activity | அமைதியான செயல்","Kind action | அன்பான செயல்","Legal system | சட்ட அமைப்பு"],
@@ -177,7 +175,7 @@ explanation: "Gangsterism means organized crime by gangs. | Gangsterism (கே�
 question: "What is the meaning of Brutality? | Brutality என்றால் என்ன?",
 options: ["Extreme cruelty | கடுமையான கொடூரம்","Kindness | இரக்கம்","Softness | மென்மை","Wisdom | ஞானம்"],
 correctAnswer: "Extreme cruelty | கடுமையான கொடூரம்",
-explanation: "Brutality means extreme cruelty or violence. | Brutality (ப்ரூட்டாலிட்டி) என்பது கடுமையான கொடூரம். Example: The brutality shocked everyone. | அந்த கொடூரம் அனைவரையும் அதிர்ச்சியடையச் செய்தது."
+explanation: "Brutality means extreme cruelty. | Brutality (ப்ரூட்டாலிட்டி) என்பது கடுமையான கொடூரம். Example: The brutality shocked everyone. | அந்த கொடூரம் அனைவரையும் அதிர்ச்சியடையச் செய்தது."
 },
 
 {
@@ -186,6 +184,7 @@ options: ["Absence of law and order | சட்டமும் ஒழுங்�
 correctAnswer: "Absence of law and order | சட்டமும் ஒழுங்கும் இல்லாத நிலை",
 explanation: "Lawlessness means lack of law and order. | Lawlessness (லாலெஸ்நஸ்) என்பது சட்ட ஒழுங்கு இல்லாத நிலை. Example: Lawlessness creates fear in society. | சட்டமின்மை சமூகத்தில் பயத்தை உருவாக்கும்."
 },
+
 {
 question: "What is the meaning of Endless? | Endless என்றால் என்ன?",
 options: ["Without end | முடிவில்லாதது","Very short | மிகவும் குறுகியது","Temporary | தற்காலிகமானது","Limited | வரையறுக்கப்பட்டது"],
@@ -197,7 +196,7 @@ explanation: "Endless means having no end. | Endless (எண்ட்லெஸ�
 question: "What is the meaning of Terminal? | Terminal என்றால் என்ன?",
 options: ["Final or last stage | இறுதி நிலை","Beginning | தொடக்கம்","Middle point | நடுப்பகுதி","Temporary | தற்காலிகம்"],
 correctAnswer: "Final or last stage | இறுதி நிலை",
-explanation: "Terminal means final or last stage. | Terminal (டெர்மினல்) என்பது இறுதி நிலையை குறிக்கும். Example: He was in the terminal stage of illness. | அவர் நோயின் இறுதி நிலையில் இருந்தார்."
+explanation: "Terminal means final stage. | Terminal (டெர்மினல்) என்பது இறுதி நிலை. Example: He was in the terminal stage of illness. | அவர் நோயின் இறுதி நிலையில் இருந்தார்."
 },
 
 {
@@ -211,7 +210,7 @@ explanation: "Incessant means continuing without pause. | Incessant (இன்�
 question: "What is the meaning of Perpetual? | Perpetual என்றால் என்ன?",
 options: ["Never-ending or constant | எப்போதும் தொடரும்","Short-term | குறுகிய கால","Occasional | அவ்வப்போது","Weak | பலவீனமான"],
 correctAnswer: "Never-ending or constant | எப்போதும் தொடரும்",
-explanation: "Perpetual means continuing forever or constantly. | Perpetual (பர்பெச்சுவல்) என்பது எப்போதும் தொடர்வது. Example: She lives in perpetual fear. | அவள் எப்போதும் பயத்தில் வாழ்கிறாள்."
+explanation: "Perpetual means continuing forever. | Perpetual (பர்பெச்சுவல்) என்பது எப்போதும் தொடரும். Example: She lives in perpetual fear. | அவள் எப்போதும் பயத்தில் வாழ்கிறாள்."
 },
 
 {
@@ -225,13 +224,25 @@ explanation: "Eternal means lasting forever. | Eternal (இடர்னல்) �
 question: "What is the meaning of Boundless? | Boundless என்றால் என்ன?",
 options: ["Without limits | எல்லையற்றது","Restricted | கட்டுப்படுத்தப்பட்டது","Small | சிறியது","Temporary | தற்காலிகமானது"],
 correctAnswer: "Without limits | எல்லையற்றது",
-explanation: "Boundless means without limits or boundaries. | Boundless (பவுண்ட்லெஸ்) என்பது எல்லையற்றது. Example: Her happiness was boundless. | அவளுடைய மகிழ்ச்சி எல்லையற்றதாக இருந்தது."
-} ,
+explanation: "Boundless means without limits. | Boundless (பவுண்ட்லெஸ்) என்பது எல்லையற்றது. Example: Her happiness was boundless. | அவளுடைய மகிழ்ச்சி எல்லையற்றதாக இருந்தது."
+},
+
 {
 question: "What is the meaning of Lie in ashes? | Lie in ashes என்றால் என்ன?",
 options: ["Completely destroyed or ruined | முழுமையாக அழிந்தது","Partially damaged | பகுதி சேதம்","Beautifully built | அழகாக கட்டப்பட்டது","Slightly broken | சற்றே உடைந்தது"],
 correctAnswer: "Completely destroyed or ruined | முழுமையாக அழிந்தது",
-explanation: "Lie in ashes means to be completely destroyed. | Lie in ashes (லை இன் ஆஷஸ்) என்பது முழுமையாக அழிந்தது. Example: After the fire, the house lay in ashes. | தீ விபத்துக்குப் பிறகு வீடு முழுமையாக அழிந்தது."
+explanation: "Lie in ashes means completely destroyed. | Lie in ashes (லை இன் ஆஷஸ்) என்பது முழுமையாக அழிந்தது. Example: After the fire, the house lay in ashes. | தீ விபத்துக்குப் பிறகு வீடு முழுமையாக அழிந்தது."
+},
+
+/*
+PASTE YOUR FULL 40 WORD QUESTIONS HERE
+FORMAT:
+
+{
+question: "Your question?",
+options: ["A","B","C","D"],
+correctAnswer: "Correct Option",
+explanation: "Meaning + Tamil pronunciation + Example"
 },
 {
 question: "What is the meaning of Far-right? | Far-right என்றால் என்ன?",
@@ -263,43 +274,44 @@ explanation: "Radical means favoring extreme changes. | Radical (ராடிக
 
 {
 question: "What is the meaning of Reactionary? | Reactionary என்றால் என்ன?",
-options: ["Opposing political or social reform | சீர்திருத்தத்திற்கு எதிரானவர்","Modern thinker | நவீன சிந்தனை","Liberal supporter | சுதந்திர ஆதரவாளர்","Social worker | சமூக சேவகர்"],
-correctAnswer: "Opposing political or social reform | சீர்திருத்தத்திற்கு எதிரானவர்",
-explanation: "Reactionary means opposing reform or change. | Reactionary (ரியாக்ஷனரி) என்பது சீர்திருத்தத்திற்கு எதிரானவர். Example: Reactionary forces resisted change. | சீர்திருத்தத்திற்கு எதிரானவர்கள் மாற்றத்தை எதிர்த்தனர்."
+options: ["Opposing reform or change | சீர்திருத்தத்திற்கு எதிரானவர்","Modern thinker | நவீன சிந்தனை","Liberal supporter | சுதந்திர ஆதரவாளர்","Social worker | சமூக சேவகர்"],
+correctAnswer: "Opposing reform or change | சீர்திருத்தத்திற்கு எதிரானவர்",
+explanation: "Reactionary means opposing change. | Reactionary (ரியாக்ஷனரி) என்பது சீர்திருத்தத்திற்கு எதிரானவர். Example: Reactionary forces resisted change. | சீர்திருத்தத்திற்கு எதிரானவர்கள் மாற்றத்தை எதிர்த்தனர்."
 },
 
 {
 question: "What is the meaning of Intolerant? | Intolerant என்றால் என்ன?",
-options: ["Not willing to accept different views | பிற கருத்துகளை ஏற்காதவர்","Open-minded | திறந்த மனப்பான்மை","Kind-hearted | இரக்கமுள்ளவர்","Flexible | நெகிழ்வானவர்"],
-correctAnswer: "Not willing to accept different views | பிற கருத்துகளை ஏற்காதவர்",
-explanation: "Intolerant means unwilling to accept different opinions. | Intolerant (இன்டாலரன்ட்) என்பது பிற கருத்துகளை ஏற்காதவர். Example: Intolerant behavior creates conflict. | சகிப்புத்தன்மையற்ற நடத்தை முரண்பாடுகளை உருவாக்கும்."
+options: ["Not accepting different views | பிற கருத்துகளை ஏற்காதவர்","Open-minded | திறந்த மனப்பான்மை","Kind-hearted | இரக்கமுள்ளவர்","Flexible | நெகிழ்வானவர்"],
+correctAnswer: "Not accepting different views | பிற கருத்துகளை ஏற்காதவர்",
+explanation: "Intolerant means unwilling to accept other opinions. | Intolerant (இன்டாலரன்ட்) என்பது பிற கருத்துகளை ஏற்காதவர். Example: Intolerant behavior creates conflict. | சகிப்புத்தன்மையற்ற நடத்தை முரண்பாடுகளை உருவாக்கும்."
 },
+
 {
 question: "What is the meaning of All-out? | All-out என்றால் என்ன?",
 options: ["Complete effort | முழுமையான முயற்சி","Partial effort | பகுதி முயற்சி","Slow work | மெதுவான வேலை","Weak attempt | பலவீனமான முயற்சி"],
 correctAnswer: "Complete effort | முழுமையான முயற்சி",
-explanation: "All-out means complete or total effort. | All-out (ஆல் அவுட்) என்பது முழுமையான முயற்சி. Example: They launched an all-out attack. | அவர்கள் முழுமையான தாக்குதலை ஆரம்பித்தனர்."
+explanation: "All-out means total effort. | All-out (ஆல் அவுட்) என்பது முழுமையான முயற்சி. Example: They launched an all-out attack. | அவர்கள் முழுமையான தாக்குதலை ஆரம்பித்தனர்."
 },
 
 {
 question: "What is the meaning of Complete? | Complete என்றால் என்ன?",
-options: ["Finished or whole | முழுமையானது","Half | பாதி","Broken | உடைந்தது","Temporary | தற்காலிகம்"],
-correctAnswer: "Finished or whole | முழுமையானது",
-explanation: "Complete means whole or finished. | Complete (கம்ப்ளீட்) என்பது முழுமையானது. Example: She completed her work. | அவள் தனது வேலையை முடித்தாள்."
+options: ["Whole or finished | முழுமையானது","Half | பாதி","Broken | உடைந்தது","Temporary | தற்காலிகம்"],
+correctAnswer: "Whole or finished | முழுமையானது",
+explanation: "Complete means whole. | Complete (கம்ப்ளீட்) என்பது முழுமையானது. Example: She completed her task. | அவள் தனது பணியை முடித்தாள்."
 },
 
 {
 question: "What is the meaning of Total? | Total என்றால் என்ன?",
 options: ["Entire amount | முழு அளவு","Small part | சிறிய பகுதி","Few | சில","Temporary | தற்காலிகம்"],
 correctAnswer: "Entire amount | முழு அளவு",
-explanation: "Total means whole or entire amount. | Total (டோட்டல்) என்பது முழு அளவு. Example: The total cost is high. | மொத்த செலவு அதிகமாக உள்ளது."
+explanation: "Total means entire amount. | Total (டோட்டல்) என்பது முழு அளவு. Example: The total cost is high. | மொத்த செலவு அதிகமாக உள்ளது."
 },
 
 {
 question: "What is the meaning of Thorough? | Thorough என்றால் என்ன?",
 options: ["Very careful and complete | மிகவும் கவனமாக மற்றும் முழுமையாக","Careless | கவனக்குறைவு","Fast | வேகமான","Partial | பகுதி"],
 correctAnswer: "Very careful and complete | மிகவும் கவனமாக மற்றும் முழுமையாக",
-explanation: "Thorough means done carefully and completely. | Thorough (தரோ) என்பது முழுமையாகவும் கவனமாகவும் செய்தது. Example: He did a thorough check. | அவர் முழுமையான சரிபார்ப்பு செய்தார்."
+explanation: "Thorough means carefully done. | Thorough (தரோ) என்பது முழுமையாக செய்தது. Example: He did a thorough check. | அவர் முழுமையான சரிபார்ப்பு செய்தார்."
 },
 
 {
@@ -313,20 +325,21 @@ explanation: "Exhaustive means covering all details. | Exhaustive (எக்ஸ�
 question: "What is the meaning of Vigorous? | Vigorous என்றால் என்ன?",
 options: ["Strong and energetic | வலிமையான மற்றும் ஆற்றலான","Weak | பலவீனம்","Lazy | சோம்பேறி","Silent | அமைதி"],
 correctAnswer: "Strong and energetic | வலிமையான மற்றும் ஆற்றலான",
-explanation: "Vigorous means strong and energetic. | Vigorous (விகரஸ்) என்பது வலிமையான மற்றும் ஆற்றலான. Example: She gave a vigorous performance. | அவள் ஆற்றலான நிகழ்ச்சியை வழங்கினாள்."
+explanation: "Vigorous means energetic. | Vigorous (விகரஸ்) என்பது ஆற்றலான. Example: She gave a vigorous performance. | அவள் ஆற்றலான நிகழ்ச்சியை வழங்கினாள்."
 },
+
 {
 question: "What is the meaning of Reckless? | Reckless என்றால் என்ன?",
 options: ["Careless without thinking | யோசிக்காமல் செய்பவன்","Very careful | மிகவும் கவனமான","Polite | மரியாதையான","Wise | ஞானம் உடைய"],
 correctAnswer: "Careless without thinking | யோசிக்காமல் செய்பவன்",
-explanation: "Reckless means acting without thinking about danger. | Reckless (ரெக்லெஸ்) என்பது விளைவுகளை யோசிக்காமல் செய்பவன். Example: He made a reckless decision. | அவர் யோசிக்காமல் முடிவு செய்தார்."
+explanation: "Reckless means acting without thinking. | Reckless (ரெக்லெஸ்) என்பது யோசிக்காமல் செய்பவன். Example: He made a reckless decision. | அவர் யோசிக்காமல் முடிவு செய்தார்."
 },
 
 {
 question: "What is the meaning of Rash? | Rash என்றால் என்ன?",
 options: ["Acting too quickly | அவசரமாக செய்பவன்","Slow thinker | மெதுவாக யோசிப்பவன்","Careful | கவனமான","Calm | அமைதியான"],
 correctAnswer: "Acting too quickly | அவசரமாக செய்பவன்",
-explanation: "Rash means acting too quickly without thinking. | Rash (ராஷ்) என்பது அவசரமாக செய்பவன். Example: It was a rash move. | அது அவசர முடிவு."
+explanation: "Rash means acting quickly without thinking. | Rash (ராஷ்) என்பது அவசரமாக செய்பவன். Example: It was a rash move. | அது அவசர முடிவு."
 },
 
 {
@@ -340,115 +353,25 @@ explanation: "Impulsive means acting on sudden feelings. | Impulsive (இம்�
 question: "What is the meaning of Heedless? | Heedless என்றால் என்ன?",
 options: ["Not paying attention | கவனம் செலுத்தாத","Very alert | மிக கவனமான","Disciplined | ஒழுக்கமான","Responsible | பொறுப்பான"],
 correctAnswer: "Not paying attention | கவனம் செலுத்தாத",
-explanation: "Heedless means not paying attention to risk. | Heedless (ஹீட்லெஸ்) என்பது கவனம் செலுத்தாதவர். Example: He was heedless of warnings. | அவர் எச்சரிக்கையை கவனிக்கவில்லை."
+explanation: "Heedless means not careful. | Heedless (ஹீட்லெஸ்) என்பது கவனம் செலுத்தாதவர். Example: He was heedless of warnings. | அவர் எச்சரிக்கையை கவனிக்கவில்லை."
 },
 
 {
 question: "What is the meaning of Audacious? | Audacious என்றால் என்ன?",
-options: ["Bold and daring | துணிச்சலான","Fearful | பயந்தவன்","Weak | பலவீனமான","Shy | வெட்கமான"],
+options: ["Bold and daring | துணிச்சலான","Fearful | பயந்தவன்","Weak | பலவீனம்","Shy | வெட்கம்"],
 correctAnswer: "Bold and daring | துணிச்சலான",
-explanation: "Audacious means boldly daring. | Audacious (ஆடேஷஸ்) என்பது துணிச்சலான. Example: It was an audacious plan. | அது துணிச்சலான திட்டம்."
+explanation: "Audacious means daring. | Audacious (ஆடேஷஸ்) என்பது துணிச்சலான. Example: It was an audacious plan. | அது துணிச்சலான திட்டம்."
 },
 
 {
 question: "What is the meaning of Foolhardy? | Foolhardy என்றால் என்ன?",
-options: ["Recklessly bold | முட்டாள்தனமான துணிவு","Careful | கவனமான","Wise | ஞானம் உடைய","Safe | பாதுகாப்பான"],
+options: ["Recklessly bold | முட்டாள்தனமான துணிவு","Careful | கவனமான","Wise | ஞானம்","Safe | பாதுகாப்பான"],
 correctAnswer: "Recklessly bold | முட்டாள்தனமான துணிவு",
 explanation: "Foolhardy means dangerously bold. | Foolhardy (ஃபூல்ஹார்டி) என்பது ஆபத்தான துணிவு. Example: It was foolhardy to drive fast in rain. | மழையில் வேகமாக ஓட்டுவது ஆபத்தானது."
 },
-{
-question: "What is the meaning of Warmonger? | Warmonger என்றால் என்ன?",
-options: ["Person who promotes war | போரை ஆதரிப்பவன்","Peace lover | அமைதியை விரும்புபவன்","Teacher | ஆசிரியர்","Doctor | மருத்துவர்"],
-correctAnswer: "Person who promotes war | போரை ஆதரிப்பவன்",
-explanation: "Warmonger means a person who encourages war. | Warmonger (வார்மங்கர்) என்பது போரை தூண்டும் நபர். Example: The leader was accused of being a warmonger. | அந்த தலைவர் போரை தூண்டியவர் என்று குற்றம் சாட்டப்பட்டார்."
-},
 
-{
-question: "What is the meaning of Militarist? | Militarist என்றால் என்ன?",
-options: ["Supporter of military power | இராணுவ ஆட்சியை ஆதரிப்பவர்","Peace activist | அமைதி ஆதரவாளர்","Social worker | சமூக சேவகர்","Teacher | ஆசிரியர்"],
-correctAnswer: "Supporter of military power | இராணுவ ஆட்சியை ஆதரிப்பவர்",
-explanation: "Militarist means one who supports strong military control. | Militarist (மிலிட்டரிஸ்ட்) என்பது இராணுவ ஆதரவாளர். Example: He is known as a militarist leader. | அவர் இராணுவ ஆதரவாளராக அறியப்படுகிறார்."
-},
+*/
 
-{
-question: "What is the meaning of Jingoist? | Jingoist என்றால் என்ன?",
-options: ["Extreme patriot supporting war | தீவிர தேசபக்தி கொண்டு போரை ஆதரிப்பவர்","Neutral citizen | நடுநிலை குடிமகன்","Calm person | அமைதியானவர்","Artist | கலைஞர்"],
-correctAnswer: "Extreme patriot supporting war | தீவிர தேசபக்தி கொண்டு போரை ஆதரிப்பவர்",
-explanation: "Jingoist means aggressive patriot who favors war. | Jingoist (ஜிங்கோயிஸ்ட்) என்பது போரை ஆதரிக்கும் தீவிர தேசபக்தர். Example: His speech sounded jingoistic. | அவரது பேச்சு தீவிர தேசபக்தி நிறைந்ததாக இருந்தது."
-},
-
-{
-question: "What is the meaning of Hawk? | Hawk என்றால் என்ன?",
-options: ["Person favoring aggressive policy | தாக்குதல் கொள்கையை ஆதரிப்பவர்","Peace supporter | அமைதி ஆதரிப்பவர்","Farmer | விவசாயி","Student | மாணவர்"],
-correctAnswer: "Person favoring aggressive policy | தாக்குதல் கொள்கையை ஆதரிப்பவர்",
-explanation: "Hawk means someone who supports war or aggression. | Hawk (ஹாக்) என்பது தாக்குதல் கொள்கை ஆதரவாளர். Example: He is considered a foreign policy hawk. | அவர் வெளிநாட்டு கொள்கையில் தாக்குதல் ஆதரவாளராக கருதப்படுகிறார்."
-},
-
-{
-question: "What is the meaning of Bellicist? | Bellicist என்றால் என்ன?",
-options: ["Person who supports war | போரை ஆதரிப்பவர்","Peace lover | அமைதியை விரும்புபவர்","Scientist | விஞ்ஞானி","Writer | எழுத்தாளர்"],
-correctAnswer: "Person who supports war | போரை ஆதரிப்பவர்",
-explanation: "Bellicist means a person inclined toward war. | Bellicist (பெலிசிஸ்ட்) என்பது போரை விரும்புபவர். Example: The bellicist tone worried citizens. | போர்முனை மனப்பான்மை மக்களை கவலைப்படுத்தியது."
-},
-
-{
-question: "What is the meaning of Aggressor? | Aggressor என்றால் என்ன?",
-options: ["One who attacks first | முதலில் தாக்குபவர்","Victim | பாதிக்கப்பட்டவர்","Helper | உதவியாளர்","Friend | நண்பர்"],
-correctAnswer: "One who attacks first | முதலில் தாக்குபவர்",
-explanation: "Aggressor means a person who starts an attack. | Aggressor (அக்ரெசர்) என்பது முதலில் தாக்குபவர். Example: The aggressor nation faced sanctions. | தாக்குதல் நடத்திய நாடு தடைசெய்யப்பட்டது."
-}
-],
-
-"Page 2": [
-{
-question: "Sattriya classical dance belongs to which state?",
-options: ["Assam","Kerala","Tamil Nadu","Odisha"],
-correctAnswer: "Assam",
-explanation: "Sattriya belongs to Assam."
-}
-
-],
-
-"Page 3": [
-{
-question: "Mohiniyattam belongs to which state?",
-options: ["Kerala","Odisha","Assam","Tamil Nadu"],
-correctAnswer: "Kerala",
-explanation: "Mohiniyattam belongs to Kerala."
-}
-],
-
-"Page 4": [
-{
-question: "Bharatanatyam originated in?",
-options: ["Tamil Nadu","Kerala","UP","Manipur"],
-correctAnswer: "Tamil Nadu",
-explanation: "Bharatanatyam originated in Tamil Nadu."
-}
-],
-
-"Page 5": [
-{
-question: "Kathak belongs to which state?",
-options: ["Uttar Pradesh","Kerala","Assam","Odisha"],
-correctAnswer: "Uttar Pradesh",
-explanation: "Kathak belongs to Uttar Pradesh."
-}
-],
-
-"Page 6": [
-{
-question: "Kathak belongs to which state?",
-options: ["Uttar Pradesh","Kerala","Assam","Odisha"],
-correctAnswer: "Uttar Pradesh",
-explanation: "Kathak belongs to Uttar Pradesh."
-},
-{
-question: "raja belongs to which state?",
-options: ["Uttar Pradesh","Kerala","Assam","Odisha"],
-correctAnswer: "Uttar Pradesh",
-explanation: "Kathak belongs to Uttar Pradesh."
-}
 ]
 
 };
@@ -462,27 +385,22 @@ let visited = [];
 let currentPage = "";
 let shuffleMode = false;
 
-// =============================
-
 function shuffleArray(array){
-for(let i = array.length - 1; i > 0; i--){
-let j = Math.floor(Math.random() * (i + 1));
-[array[i], array[j]] = [array[j], array[i]];
+for(let i=array.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1));
+[array[i],array[j]]=[array[j],array[i]];
 }
 return array;
 }
 
-// =============================
-
 function loadPage(pageName){
 
 currentPage = pageName;
-
 quizData = JSON.parse(JSON.stringify(allPages[pageName]));
 
 if(shuffleMode){
 shuffleArray(quizData);
-quizData.forEach(q => shuffleArray(q.options));
+quizData.forEach(q=>shuffleArray(q.options));
 }
 
 current = 0;
@@ -494,18 +412,13 @@ document.getElementById("result").innerHTML = "";
 loadQuestion();
 }
 
-// =============================
-
 function restartPage(){
 loadPage(currentPage);
 }
 
-// =============================
-
 function loadQuestion(){
 
 visited[current] = true;
-
 let q = quizData[current];
 
 document.getElementById("progress").innerText =
@@ -513,129 +426,119 @@ document.getElementById("progress").innerText =
 
 document.getElementById("question").innerText = q.question;
 
-let html = "";
+let html="";
 
 for(let i=0;i<q.options.length;i++){
 
-let className = "option";
+let className="option";
 
-if(answers[current] !== null){
-if(q.options[i] === q.correctAnswer)
-className += " correct";
-else if(i === answers[current])
-className += " wrong";
+if(answers[current]!==null){
+if(q.options[i]===q.correctAnswer)
+className+=" correct";
+else if(i===answers[current])
+className+=" wrong";
 }
 
-html += '<div class="'+className+'" onclick="selectAnswer('+i+')">'+q.options[i]+'</div>';
+html+=`<div class="${className}" onclick="selectAnswer(${i})">${q.options[i]}</div>`;
 }
 
-document.getElementById("options").innerHTML = html;
+document.getElementById("options").innerHTML=html;
 
-if(answers[current] !== null){
-document.getElementById("explanation").innerHTML =
-"<b>Explanation:</b> " + q.explanation;
+if(answers[current]!==null){
+document.getElementById("explanation").innerHTML=
+"<b>Explanation:</b> "+q.explanation;
 }else{
-document.getElementById("explanation").innerHTML = "";
+document.getElementById("explanation").innerHTML="";
 }
 
 loadNavigation();
 updateSummary();
 }
 
-// =============================
-
 function selectAnswer(index){
-answers[current] = index;
+answers[current]=index;
 loadQuestion();
 }
 
 function nextQuestion(){
-if(current < quizData.length-1){
+if(current<quizData.length-1){
 current++;
 loadQuestion();
 }
 }
 
 function prevQuestion(){
-if(current > 0){
+if(current>0){
 current--;
 loadQuestion();
 }
 }
 
 function goToQuestion(i){
-current = i;
+current=i;
 loadQuestion();
 }
 
-// =============================
-
 function loadNavigation(){
 
-let navHTML = "";
+let navHTML="";
 
 for(let i=0;i<quizData.length;i++){
 
-let className = "nav-btn";
+let className="nav-btn";
 
-if(i === current) className += " current";
-else if(answers[i] !== null) className += " answered";
-else if(visited[i]) className += " notanswered";
+if(i===current) className+=" current";
+else if(answers[i]!==null) className+=" answered";
+else if(visited[i]) className+=" notanswered";
 
-navHTML += '<button class="'+className+'" onclick="goToQuestion('+i+')">'+(i+1)+'</button>';
+navHTML+=`<button class="${className}" onclick="goToQuestion(${i})">${i+1}</button>`;
 }
 
-document.getElementById("navPanel").innerHTML = navHTML;
+document.getElementById("navPanel").innerHTML=navHTML;
 }
-
-// =============================
 
 function updateSummary(){
 
-let answered = answers.filter(a=>a!==null).length;
-let notVisited = visited.filter(v=>v===false).length;
-let notAnswered = quizData.length - answered - notVisited;
+let answered=answers.filter(a=>a!==null).length;
+let notVisited=visited.filter(v=>v===false).length;
+let notAnswered=quizData.length-answered-notVisited;
 
-document.getElementById("answeredCount").innerText = answered;
-document.getElementById("notAnsweredCount").innerText = notAnswered;
-document.getElementById("notVisitedCount").innerText = notVisited;
+document.getElementById("answeredCount").innerText=answered;
+document.getElementById("notAnsweredCount").innerText=notAnswered;
+document.getElementById("notVisitedCount").innerText=notVisited;
 }
-
-// =============================
 
 function showResult(){
 
-let score = 0;
+let score=0;
 
 for(let i=0;i<quizData.length;i++){
-if(quizData[i].options[answers[i]] === quizData[i].correctAnswer){
+if(answers[i]!==null && quizData[i].options[answers[i]]===quizData[i].correctAnswer){
 score++;
 }
 }
 
-document.getElementById("result").innerHTML =
+document.getElementById("result").innerHTML=
 "<h3>Your Score: "+score+" / "+quizData.length+"</h3>";
 }
 
-// =============================
+window.onload=function(){
 
-window.onload = function(){
-
-let pageSelect = document.getElementById("pageSelect");
+let pageSelect=document.getElementById("pageSelect");
 
 for(let page in allPages){
-let option = document.createElement("option");
-option.value = page;
-option.text = page;
+let option=document.createElement("option");
+option.value=page;
+option.text=page;
 pageSelect.appendChild(option);
 }
 
-pageSelect.onchange = function(){
+pageSelect.onchange=function(){
 loadPage(this.value);
 };
 
-document.getElementById("modeSelect").onchange = function(){
-shuffleMode = (this.value === "true");
+document.getElementById("modeSelect").onchange=function(){
+shuffleMode=(this.value==="true");
 loadPage(pageSelect.value);
 };
 
